@@ -192,10 +192,10 @@
                             <span class="text-[10px] uppercase tracking-wider font-bold text-terracotta">Step 01</span>
                             <h4 class="font-serif text-xl font-semibold mb-3">Choose Palette</h4>
                             <div class="flex gap-3">
-                                <button onclick="setSandboxPalette('cream')" class="group flex items-center justify-center w-10 h-10 rounded-full border-2 border-terracotta bg-[#FAF6F0]" title="Alabaster Cream"></button>
-                                <button onclick="setSandboxPalette('charcoal')" class="group flex items-center justify-center w-10 h-10 rounded-full border-2 border-transparent hover:border-terracotta bg-[#1A1A1A]" title="Deep Charcoal"></button>
-                                <button onclick="setSandboxPalette('sage')" class="group flex items-center justify-center w-10 h-10 rounded-full border-2 border-transparent hover:border-terracotta bg-[#607A66]" title="Sage Forest"></button>
-                                <button onclick="setSandboxPalette('terracotta')" class="group flex items-center justify-center w-10 h-10 rounded-full border-2 border-transparent hover:border-terracotta bg-[#C86A55]" title="Clay Terracotta"></button>
+                                <button onclick="setSandboxPalette('cream')" class="group flex items-center justify-center w-10 h-10 rounded-full border-2 border-terracotta hover:border-terracotta bg-[#FAF6F0] transition-colors" title="Alabaster Cream"></button>
+                                <button onclick="setSandboxPalette('charcoal')" class="group flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-300 hover:border-terracotta bg-[#1A1A1A] transition-colors" title="Deep Charcoal"></button>
+                                <button onclick="setSandboxPalette('sage')" class="group flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-300 hover:border-terracotta bg-[#607A66] transition-colors" title="Sage Forest"></button>
+                                <button onclick="setSandboxPalette('terracotta')" class="group flex items-center justify-center w-10 h-10 rounded-full border-2 border-gray-300 hover:border-terracotta bg-[#C86A55] transition-colors" title="Clay Terracotta"></button>
                             </div>
                         </div>
 
@@ -782,10 +782,10 @@
                 if (btn) {
                     if (c === color) {
                         btn.classList.add('border-terracotta');
-                        btn.classList.remove('border-transparent');
+                        btn.classList.remove('border-gray-300');
                     } else {
                         btn.classList.remove('border-terracotta');
-                        btn.classList.add('border-transparent');
+                        btn.classList.add('border-gray-300');
                     }
                 }
             });
