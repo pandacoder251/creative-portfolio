@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pousali | Creative Gallery</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            display: ['"Playfair Display"', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            cream: '#FAF6F0',
+            charcoal: '#1A1A1A',
+            terracotta: '#C86A55',
+            sand: '#E3DAC9',
+            sage: '#607A66',
+          },
+        },
+      },
+    }
+  </script>
+
+  <style>
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #FAF6F0; }
+    ::-webkit-scrollbar-thumb { background: #C86A55; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #A04E3C; }
+
+    .ambient-noise {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.015;
+    }
+
+    .fade-in-on-scroll {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-panel {
+      background: rgba(250, 246, 240, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+
+<body class="bg-cream text-charcoal font-sans antialiased selection:bg-terracotta selection:text-white relative min-h-screen">
+  <!-- Ambient Subtle Grain Overlay -->
+  <div class="fixed inset-0 pointer-events-none ambient-noise z-50"></div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="fixed top-0 left-0 w-full bg-cream/85 backdrop-blur-md z-40 border-b border-sand/40 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="font-serif text-2xl font-bold tracking-wide hover:opacity-80 transition-opacity">
+        Pousali<span class="text-terracotta">Dolai</span>
+      </a>
+
+      <div class="hidden md:flex items-center space-x-10 text-sm tracking-widest uppercase font-medium">
+        <a href="index.html#work" class="hover:text-terracotta transition-colors duration-300">Selected Work</a>
+        <a href="index.html#playground" class="hover:text-terracotta transition-colors duration-300">Canva Sandbox</a>
+        <a href="index.html#featured" class="hover:text-terracotta transition-colors duration-300">Case Study</a>
+        <a href="index.html#about" class="hover:text-terracotta transition-colors duration-300">About</a>
+        <a href="index.html#contact" class="hover:text-terracotta transition-colors duration-300">Contact</a>
+      </div>
+
+      <div class="md:hidden">
+        <a href="index.html" class="text-xs uppercase tracking-widest font-semibold text-charcoal/70 hover:text-terracotta transition-colors">
+          Back
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-24 pb-14 px-6 relative overflow-hidden bg-[radial-gradient(#e6ded4_1px,transparent_1px)] [background-size:24px_24px]">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
+        <div class="max-w-2xl">
+          <span class="text-xs uppercase tracking-widest text-terracotta font-semibold mb-4 block">
+            Gallery
+          </span>
+          <h1 class="font-serif text-5xl md:text-6xl font-light leading-tight tracking-tight">
+            Visual Poetry, Organized for Browsing
+          </h1>
+          <p class="mt-6 text-charcoal/70 text-sm md:text-base font-light leading-relaxed">
+            A curated selection of design + copy experiments. Filter by vibe, then open a card for its story.
+          </p>
+        </div>
+
+        
+
+  </section>
+
+  <!-- GALLERY GRID -->
+  <section class="py-14 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid">
+
+        <!-- Card A -->
+        <article class="group gallery-item design overflow-hidden cursor-pointer bg-cream p-6 border border-sand/40 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in-on-scroll">
+          <div class="aspect-[4/3] rounded-xl border border-sand/40 bg-sand/20 overflow-hidden relative">
+            <img src="gallery/gal2.png" alt="Gallery artwork 2" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:scale-[1.02] transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/30 via-transparent to-transparent opacity-60"></div>
+            <div class="absolute top-4 left-4">
+              <span class="text-[10px] uppercase tracking-widest text-cream font-semibold bg-charcoal/70 px-3 py-1 rounded-full border border-cream/20">
+                Announcement Post
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="font-serif text-2xl font-light mb-2 group-hover:text-terracotta transition-colors">Announcement of New Secretariats of SOA English Cafe</h3>
+            <p class="text-charcoal/60 text-sm leading-relaxed font-light mb-4">
+            Fun typography with caraousel-like layout, with vintage aesthetic to match the nostalgic tone of the announcement.
+            </p>
+            <a onclick="openWork('Announcement of New Secretariats of SOA English Cafe', 'Editorial grid + cover direction. Image: gallery/gal2.png')" href="https://www.instagram.com/p/DYcf3abk_D1/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="text-xs tracking-widest uppercase font-semibold text-charcoal/40 hover:text-terracotta transition-colors">
+              Check Out →
+            </a>
+          </div>
+        </article>
+
+        <!-- Card B -->
+        <article class="group gallery-item writing overflow-hidden cursor-pointer bg-cream p-6 border border-sand/40 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in-on-scroll">
+          <div class="aspect-[4/3] rounded-xl border border-sand/40 bg-sand/20 overflow-hidden relative">
+            <img src="gallery/gal3.png" alt="Gallery artwork 3" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:scale-[1.03] transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-terracotta/25 via-transparent to-transparent opacity-70"></div>
+            <div class="absolute top-4 left-4">
+              <span class="text-[10px] uppercase tracking-widest text-cream font-semibold bg-charcoal/70 px-3 py-1 rounded-full border border-cream/20">
+                Announcement Post
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="font-serif text-2xl font-light mb-2 group-hover:text-terracotta transition-colors">Medha Manthan</h3>
+            <p class="text-charcoal/60 text-sm leading-relaxed font-light mb-4">
+              Announcement for the the winners of the event conducted by SOA English Cafe under the umbrella of Chakravyuh x Genesis 2k26.
+            </p>
+            <a onclick="openWork('Medha Manthan', 'Narrative-driven social micro-essays. Image: gallery/gal3.png')" href="https://www.instagram.com/p/DYOXyXuk8J9/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==" class="text-xs tracking-widest uppercase font-semibold text-charcoal/40 hover:text-terracotta transition-colors">
+              Check Out →
+            </a>
+          </div>
+        </article>
+
+        <!-- Card C -->
+           <article class="group gallery-item writing overflow-hidden cursor-pointer bg-cream p-6 border border-sand/40 rounded-2xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in-on-scroll">
+          <div class="aspect-[4/3] rounded-xl border border-sand/40 bg-sand/20 overflow-hidden relative">
+            <img src="gallery/gal4.png" alt="Gallery artwork 3" class="absolute inset-0 w-full h-full object-cover opacity-95 group-hover:scale-[1.03] transition-transform duration-500" />
+            <div class="absolute inset-0 bg-gradient-to-t from-terracotta/25 via-transparent to-transparent opacity-70"></div>
+            <div class="absolute top-4 left-4">
+              <span class="text-[10px] uppercase tracking-widest text-cream font-semibold bg-charcoal/70 px-3 py-1 rounded-full border border-cream/20">
+               Editorial Design
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <h3 class="font-serif text-2xl font-light mb-2 group-hover:text-terracotta transition-colors">Sustainable Health Newsletter</h3>
+            <p class="text-charcoal/60 text-sm leading-relaxed font-light mb-4">
+              Minimal design for the Sustainable Health newsletter by SOA English Cafe, with a focus on readability and visual hierarchy to enhance the storytelling experience. 
+            </p>
+            <a onclick="openWork('Sustainable Health Newsletter', 'Narrative-driven social micro-essays. Image: gallery/gal4.png')" href="https://www.linkedin.com/posts/soa-english-cafe_sustainhealth-2k26-newsletter-activity-7446973996761505792-gUBo?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFY_bxkBETJ903dHeOmkBAdloH6BvoptiE0" class="text-xs tracking-widest uppercase font-semibold text-charcoal/40 hover:text-terracotta transition-colors">
+              Check Out →
+            </a>
+          </div>
+        </article>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-charcoal text-cream py-12 px-6">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between text-xs tracking-widest uppercase text-cream/50 font-medium">
+      <div>&copy; 2026 Pousali. Crafted with story & design.</div>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="index.html" class="hover:text-terracotta transition-colors">Home</a>
+        <a href="index.html#featured" class="hover:text-terracotta transition-colors">Case Study</a>
+        <a href="index.html#contact" class="hover:text-terracotta transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Custom elegant Toast System (same vibe)
+    function showToast(title, body) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = "bg-charcoal text-cream p-4 rounded-xl border border-sand/20 shadow-2xl flex flex-col gap-1 transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto";
+
+      toast.innerHTML = `
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase tracking-wider text-terracotta font-bold">${title}</span>
+          <button class="text-cream/50 hover:text-cream text-sm font-sans" onclick="this.parentElement.parentElement.remove()">&times;</button>
+        </div>
+        <p class="text-xs text-cream/80 font-light">${body}</p>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('translate-y-2', 'opacity-0');
+        setTimeout(() => toast.remove(), 300);
+      }, 4000);
+    }
+
+    function openWork(title, note) {
+      showToast(title, note);
+    }
+
+    // Gallery Filter implementation
+    function filterGallery(category) {
+      const items = document.querySelectorAll('.gallery-item');
+      const btns = {
+        all: document.getElementById('btn-all'),
+        design: document.getElementById('btn-design'),
+        writing: document.getElementById('btn-writing')
+      };
+
+      Object.values(btns).forEach(btn => {
+        btn.className = "px-5 py-2.5 rounded-full border border-sand text-charcoal/60 hover:border-charcoal hover:text-charcoal transition-all duration-300";
+      });
+
+      btns[category].className = "px-5 py-2.5 rounded-full border border-charcoal bg-charcoal text-cream transition-all duration-300 shadow-md";
+
+      items.forEach(item => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(10px)';
+
+        setTimeout(() => {
+          if (category === 'all' || item.classList.contains(category)) {
+            item.style.display = 'block';
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            item.style.display = 'none';
+          }
+        }, 150);
+      });
+
+      showToast('Filter Applied', category.toUpperCase());
+    }
+
+    // Scroll animation engine
+    document.addEventListener("DOMContentLoaded", () => {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('section, article').forEach(el => {
+        if (el.classList.contains('fade-in-on-scroll')) observer.observe(el);
+      });
+
+      // Also ensure filter buttons don't keep stale states when arriving
+      updateInitialState();
+    });
+
+    function updateInitialState() {
+      const initial = 'all';
+      const btns = {
+        all: document.getElementById('btn-all'),
+        design: document.getElementById('btn-design'),
+        writing: document.getElementById('btn-writing')
+      };
+      if (!btns.all) return;
+      Object.values(btns).forEach(btn => {
+        btn.className = "px-5 py-2.5 rounded-full border border-sand text-charcoal/60 hover:border-charcoal hover:text-charcoal transition-all duration-300";
+      });
+      btns[initial].className = "px-5 py-2.5 rounded-full border border-charcoal bg-charcoal text-cream transition-all duration-300 shadow-md";
+    }
+  </script>
+</body>
+</html>
+
