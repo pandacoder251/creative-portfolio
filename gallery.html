@@ -307,6 +307,79 @@
       });
       btns[initial].className = "px-5 py-2.5 rounded-full border border-charcoal bg-charcoal text-cream transition-all duration-300 shadow-md";
     }
+
+    /* Real Song Player */
+
+        // Use a relative path so it works correctly when served as a local file or via simple static hosting.
+        // Absolute file URL so it works even when opening index.html directly via file://
+        const SONG_SRC = "media/song.mp3";
+        const SONG_TITLE = "Suzume";
+
+        let songAudio = null;
+        let isSongPlaying = false;
+
+        function ensureSongAudio() {
+            if (songAudio) return songAudio;
+
+            songAudio = new Audio();
+            songAudio.src = SONG_SRC;
+            songAudio.preload = 'auto';
+            songAudio.loop = true; // play continuously
+
+            // Diagnostics: surface load/decode issues immediately
+            songAudio.addEventListener('error', () => {
+                showToast("Audio Load Failed", `Could not load: ${SONG_SRC}. Check path + format support.`);
+            });
+
+            songAudio.addEventListener('loadedmetadata', () => {
+                // Helps confirm the file is reachable (even if autoplay policies block play)
+                showToast("Audio Ready", `Loaded: ${SONG_TITLE}`);
+            });
+
+            songAudio.addEventListener('ended', () => {
+                isSongPlaying = false;
+                const btns = [document.getElementById('ambient-btn'), document.getElementById('mobile-ambient-btn')];
+                btns.forEach(btn => btn.innerText = "Play");
+                const indicator = document.getElementById('sound-indicator');
+                indicator.classList.remove('bg-terracotta');
+                indicator.classList.add('bg-sand');
+                showToast("Playback Ended", "The song finished playing.");
+            });
+
+            return songAudio;
+        }
+
+        async function toggleAmbientAudio() {
+            const btns = [document.getElementById('ambient-btn'), document.getElementById('mobile-ambient-btn')];
+            const indicator = document.getElementById('sound-indicator');
+
+            try {
+                const audio = ensureSongAudio();
+
+                if (!isSongPlaying) {
+                    // Must be called from a user gesture: this function is triggered by a click.
+                    await audio.play();
+                    isSongPlaying = true;
+                    btns.forEach(btn => btn.innerText = "Pause");
+                    indicator.classList.remove('bg-sand');
+                    indicator.classList.add('bg-terracotta');
+                    showToast("Now Playing", `${SONG_TITLE}`);
+                } else {
+                    audio.pause();
+                    isSongPlaying = false;
+                    btns.forEach(btn => btn.innerText = "Play");
+                    indicator.classList.remove('bg-terracotta');
+                    indicator.classList.add('bg-sand');
+                    showToast("Paused", "Playback has been paused.");
+                }
+            } catch (err) {
+                // Common issues: missing file, autoplay restrictions, unsupported format.
+                showToast("Audio Error", "Could not play the song. Check SONG_SRC and that the file exists / is accessible.");
+                console.error(err);
+            }
+        }
+
+
   </script>
 </body>
 </html>
